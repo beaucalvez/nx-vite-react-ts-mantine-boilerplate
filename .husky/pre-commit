@@ -1,4 +1,3 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+#!/usr/bin/env node
 
 npx nx affected --target=type-check --uncommitted=true && node_modules/.bin/lint-staged

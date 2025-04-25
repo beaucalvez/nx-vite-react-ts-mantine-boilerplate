@@ -5,6 +5,7 @@ import analyze from 'rollup-plugin-analyzer'
 import visualizer from 'rollup-plugin-visualizer'
 import { defineConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import { join } from 'path'
 
 const isDevelopment = Boolean(process.env.DEV ?? process.env.NODE_ENV === 'development')
 const isAnalyzeEnabled = Boolean(process.env.ANALYZE)
@@ -13,7 +14,7 @@ const isSourceMapsEnabled = Boolean(process.env.SOURCE_MAPS)
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: './',
+  base: '/partialupgrade/',
   build: {
     minify: isNoMinify ? false : 'esbuild',
     rollupOptions: {
@@ -47,5 +48,10 @@ export default defineConfig({
   server: {
     host: false,
     port: 3000,
+  },
+  resolve: {
+    alias: {
+      '@': join(__dirname, 'src'),
+    },
   },
 })

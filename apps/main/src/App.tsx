@@ -1,17 +1,21 @@
 import { ThemeProvider } from '@nx-vite-react-ts-mantine-boilerplate/ui-kit'
-import React, { FC } from 'react'
+import { AppShell } from '@mantine/core'
+import React from 'react'
 
-import { GithubApp } from './GithubApp'
+import { UsersPage } from './pages/UsersPage'
 
 import '@mantine/core/styles.css'
-import classes from './App.module.css'
 
-const App: FC = () => (
-  <ThemeProvider>
-    <div className={classes.wrapper}>
-      <GithubApp />
-    </div>
-  </ThemeProvider>
-)
+export function App() {
+  return (
+    <ThemeProvider>
+      <AppShell padding="md">
+        <AppShell.Main>
+          <UsersPage />
+        </AppShell.Main>
+      </AppShell>
+    </ThemeProvider>
+  )
+}
 
 export default App

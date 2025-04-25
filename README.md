@@ -75,3 +75,44 @@ npm run init-project
 ## License
 This code is licensed under the MIT License. 
 You can find the license file [here](/LICENSE).
+
+# Partial Upgrade
+
+A modern web application built with React, Vite, TypeScript, and Mantine.
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+```
+
+## Deployment to GitHub Pages
+
+This project is configured for deployment to GitHub Pages. The deployment process is automated using GitHub Actions.
+
+### Manual Deployment
+
+If you need to deploy manually:
+
+1. Build the application:
+   ```bash
+   npx nx build main
+   ```
+
+2. Deploy to GitHub Pages:
+   ```bash
+   npx gh-pages -d dist/apps/main
+   ```
+
+### Automatic Deployment
+
+The project is configured to automatically deploy to GitHub Pages when changes are pushed to the main branch.
+
+## View the Live Site
+
+Once deployed, the site will be available at:
+https://[your-github-username].github.io/partialupgrade/
