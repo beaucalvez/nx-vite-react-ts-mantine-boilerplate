@@ -16,6 +16,8 @@ const isSourceMapsEnabled = Boolean(process.env.SOURCE_MAPS)
 export default defineConfig({
   base: '/partialupgrade/',
   build: {
+    outDir: '../../dist/apps/main',
+    emptyOutDir: true,
     minify: isNoMinify ? false : 'esbuild',
     rollupOptions: {
       output: {
