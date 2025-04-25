@@ -1,9 +1,31 @@
 import { Box, NumberInput, Stack, Text } from '@mantine/core';
 import React, { useState } from 'react';
 
+const CURRENT_USERS = 32;
+const INITIAL_TARGET = 50;
+
+const formatNumber = (num: number) => {
+  return new Intl.NumberFormat('en-US').format(num);
+};
+
+const getLeftSection = (inputValue: number | '') => {
+  const hasValue = inputValue !== 0 && inputValue !== '';
+  return (
+    <span style={{ 
+      color: hasValue ? 'var(--mantine-color-gray-6)' : 'var(--mantine-color-dark-4)',
+      width: '55px',
+      display: 'inline-block',
+      textAlign: 'right',
+      fontSize: '1.2rem',
+      marginLeft: '10px'
+    }}>
+      {formatNumber(CURRENT_USERS)}
+      <span style={{ marginLeft: '2px' }}>+</span>
+    </span>
+  );
+};
+
 export function UsersPage() {
-  const CURRENT_USERS = 32;
-  const INITIAL_TARGET = 50;
   const [inputValue, setInputValue] = useState<number | ''>('');
   const [targetPlan, setTargetPlan] = useState(INITIAL_TARGET);
 
@@ -19,29 +41,6 @@ export function UsersPage() {
       setInputValue(numValue);
       setTargetPlan(newTarget);
     }
-  };
-
-  const formatNumber = (num: number) => {
-    return new Intl.NumberFormat('en-US').format(num);
-  };
-
-  const getLeftSection = () => {
-    const hasValue = inputValue !== 0 && inputValue !== '';
-    return (
-      <span style={{ 
-        color: hasValue ? 'var(--mantine-color-gray-6)' : 'var(--mantine-color-dark-4)',
-        width: '55px',
-        display: 'inline-block',
-        textAlign: 'right',
-        fontSize: '1.2rem',
-        marginLeft: '10px'
-      }}>
-        {formatNumber(CURRENT_USERS)}
-        <span style={{ 
-          marginLeft: '2px'
-        }}>+</span>
-      </span>
-    );
   };
 
   // Calculate the total users (current + input)
@@ -61,7 +60,7 @@ export function UsersPage() {
               </Text>
             }
             withAsterisk
-            leftSection={getLeftSection()}
+            leftSection={getLeftSection(inputValue)}
             w={150}
             hideControls
             allowNegative={false}

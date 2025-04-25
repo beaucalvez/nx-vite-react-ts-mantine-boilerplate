@@ -1,5 +1,6 @@
 name: Deploy to GitHub Pages
 
+# This workflow will build and deploy the application to GitHub Pages
 on:
   push:
     branches:
@@ -22,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npx nx build main
+        run: npx nx build main --skip-nx-cache
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
