@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, Title, Text, Box, Slider, NumberInput, Group, Button, Stack, Paper, Tooltip } from '@mantine/core';
+import { Container, Title, Text, Box, Slider, NumberInput, Group, Button, Stack, Paper } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 
 // Constants for the demo
@@ -78,10 +78,6 @@ export function NumberInputPage() {
           </Box>
         </Stack>
       </Paper>
-      
-      <Button variant="outline" onClick={() => navigate('/')}>
-        Back to Home
-      </Button>
     </Container>
   );
 } 

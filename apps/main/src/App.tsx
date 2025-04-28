@@ -2,6 +2,7 @@ import { AppShell, MantineProvider } from '@mantine/core'
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
+import { HomePage } from './pages/HomePage'
 import { UsersPage } from './pages/UsersPage'
 import { NumberInputPage } from './pages/NumberInputPage'
 import { Navigation } from './components/Navigation'
@@ -18,7 +19,7 @@ export function App() {
           </AppShell.Header>
           <AppShell.Main>
             <Routes>
-              <Route path="/" element={<UsersPage />} />
+              <Route path="/" element={<HomePage />} />
               <Route path="/users" element={<UsersPage />} />
               <Route path="/number-input" element={<NumberInputPage />} />
             </Routes>
