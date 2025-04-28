@@ -1,10 +1,11 @@
-import { AppShell, Button, Container, Group, Stack, Text, Title } from '@mantine/core';
+import { AppShell, Button, Container, Group, Title } from '@mantine/core';
 import { useState } from 'react';
-import UsersPage from '../apps/main/src/pages/UsersPage';
+import SliderPage from './components/SliderPage';
+import NumberInputPage from './components/NumberInputPage';
 import './App.css';
 
 export default function App() {
-  const [activePage, setActivePage] = useState('users');
+  const [activePage, setActivePage] = useState('slider');
 
   return (
     <AppShell
@@ -14,19 +15,19 @@ export default function App() {
       <AppShell.Header>
         <Container h="100%">
           <Group h="100%" px="md" justify="space-between">
-            <Title order={3}>Mantine React App</Title>
+            <Title order={3}>Full Partial Upgrade UI Prototypes</Title>
             <Group>
               <Button 
-                variant={activePage === 'users' ? 'filled' : 'light'} 
-                onClick={() => setActivePage('users')}
+                variant={activePage === 'slider' ? 'filled' : 'light'} 
+                onClick={() => setActivePage('slider')}
               >
-                Users
+                Slider
               </Button>
               <Button 
-                variant={activePage === 'settings' ? 'filled' : 'light'} 
-                onClick={() => setActivePage('settings')}
+                variant={activePage === 'number-input' ? 'filled' : 'light'} 
+                onClick={() => setActivePage('number-input')}
               >
-                Settings
+                Number Input
               </Button>
             </Group>
           </Group>
@@ -35,13 +36,8 @@ export default function App() {
 
       <AppShell.Main>
         <Container>
-          {activePage === 'users' && <UsersPage />}
-          {activePage === 'settings' && (
-            <Stack>
-              <Title order={2}>Settings</Title>
-              <Text>Settings page content will go here.</Text>
-            </Stack>
-          )}
+          {activePage === 'slider' && <SliderPage />}
+          {activePage === 'number-input' && <NumberInputPage />}
         </Container>
       </AppShell.Main>
     </AppShell>
