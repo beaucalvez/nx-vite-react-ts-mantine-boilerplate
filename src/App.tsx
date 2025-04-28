@@ -5,7 +5,6 @@ import './App.css';
 
 export default function App() {
   const [activePage, setActivePage] = useState('users');
-  const [count, setCount] = useState(0);
 
   return (
     <AppShell

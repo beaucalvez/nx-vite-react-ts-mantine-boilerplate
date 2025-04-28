@@ -1,37 +1,22 @@
-import path from 'node:path'
-import react from '@vitejs/plugin-react-swc'
 import { defineConfig } from 'vite'
-import tsconfigPaths from 'vite-tsconfig-paths'
-import { join } from 'path'
+import react from '@vitejs/plugin-react'
+import * as path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  plugins: [react()],
   base: '/partialupgrade/',
-  build: {
-    outDir: '../../dist/apps/main',
-    emptyOutDir: true,
-    minify: 'esbuild',
-    rollupOptions: {
-      output: {
-        manualChunks: (id) => {
-          if (id.includes('mantine')) {
-            return '@mantine'
-          }
-          if (id.includes('node_modules')) {
-            return 'vendor'
-          }
-        },
-      },
-    },
-  },
-  plugins: [tsconfigPaths(), react()],
-  server: {
-    host: false,
-    port: 3000,
-  },
   resolve: {
     alias: {
-      '@': join(__dirname, 'src'),
+      '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    port: 3000,
+    open: true
+  },
+  build: {
+    outDir: 'dist',
+    sourcemap: true
+  }
 })
