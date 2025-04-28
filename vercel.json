@@ -4,9 +4,6 @@
   "outputDirectory": "apps/main/dist",
   "installCommand": "npm install",
   "framework": "vite",
-  "buildCache": {
-    "disabled": false
-  },
   "rewrites": [
     {
       "source": "/(.*)",
