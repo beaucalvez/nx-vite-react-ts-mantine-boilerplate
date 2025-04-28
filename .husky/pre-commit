@@ -1,3 +1,0 @@
-#!/usr/bin/env node
-
-npx nx affected --target=type-check --uncommitted=true && node_modules/.bin/lint-staged

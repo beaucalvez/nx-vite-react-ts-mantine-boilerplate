@@ -6,26 +6,19 @@
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "useDefineForClassFields": true,
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-    "strictNullChecks": true,
     "strict": true,
     "baseUrl": "./packages",
     "paths": {
-      "@nx-vite-react-ts-mantine-boilerplate/graphql": ["graphql/src"],
-      "@nx-vite-react-ts-mantine-boilerplate/icons": ["icons/src"],
       "@nx-vite-react-ts-mantine-boilerplate/ui-kit": ["ui-kit/src"]
     }
   },
   "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "global.d.ts"],
-  "exclude": ["node_modules", "tmp", "dist", "coverage"],
+  "exclude": ["node_modules", "tmp", "dist", "coverage"]
 }

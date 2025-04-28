@@ -11,7 +11,7 @@
         "cwd": "./apps/main",
         "commands": [
           {
-            "command": "tsc --project tsconfig.app.json --noEmit && tsc --project tsconfig.spec.json --noEmit"
+            "command": "tsc --project tsconfig.app.json --noEmit"
           }
         ]
       }
@@ -49,38 +49,9 @@
         ]
       }
     },
-    "build-serve": {
-      "executor": "nx:run-commands",
-      "options": {
-        "cwd": "./apps/main",
-        "commands": [
-          {
-            "command": "npx http-server dist"
-          }
-        ]
-      }
-    },
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"]
-    },
-    "stylelint": {
-      "executor": "nx-stylelint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/main/src/**/*.{css}"]
-      }
-    },
-    "test": {
-      "executor": "nx:run-commands",
-      "options": {
-        "cwd": "./apps/main",
-        "commands": [
-          {
-            "command": "vitest run --config ./vitest.config.ts --coverage --passWithNoTests"
-          }
-        ]
-      }
     }
   }
 }

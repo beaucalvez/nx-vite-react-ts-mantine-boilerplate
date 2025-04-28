@@ -1,4 +1,4 @@
-import { Box, NumberInput, Stack, Text } from '@mantine/core';
+import { Box, NumberInput, Slider, Stack, Text, Tooltip } from '@mantine/core';
 import React, { useState } from 'react';
 
 const CURRENT_USERS = 32;
@@ -25,6 +25,15 @@ const getLeftSection = (inputValue: number | '') => {
   );
 };
 
+// Custom mark component with tooltip
+const MarkWithTooltip = ({ value, label, tooltip }: { value: number; label: string; tooltip: string }) => (
+  <Tooltip label={tooltip} position="bottom">
+    <Box component="span" style={{ cursor: 'help' }}>
+      {label}
+    </Box>
+  </Tooltip>
+);
+
 export function UsersPage() {
   const [inputValue, setInputValue] = useState<number | ''>('');
   const [targetPlan, setTargetPlan] = useState(INITIAL_TARGET);
@@ -36,8 +45,8 @@ export function UsersPage() {
     // Calculate what the new target plan would be
     const newTarget = Math.max(0, INITIAL_TARGET - (numValue || 0));
     
-    // Only update if the new target is greater than 0 or if the input is being cleared
-    if (newTarget > 0 || numValue === '') {
+    // Only update if the new target is greater than or equal to 0 or if the input is being cleared
+    if (newTarget >= 0 || numValue === '') {
       setInputValue(numValue);
       setTargetPlan(newTarget);
     }
@@ -49,14 +58,16 @@ export function UsersPage() {
   return (
     <Box p="xl">
       <Stack gap="xl">
-        {/* Card */}
+        {/* First Card */}
         <Box>
           <NumberInput
             label="Users"
             placeholder="new users"
             description={
               <Text size="xs">
-                Source plan: <Text component="span" fw={700} c="var(--mantine-color-text)">{formatNumber(targetPlan)}</Text>
+                Source plan: <Tooltip label="Number of users you can add from the source subscription">
+                  <Text component="span" fw={700} c="var(--mantine-color-blue-6)" style={{ cursor: 'help' }}>{formatNumber(targetPlan)}</Text>
+                </Tooltip>
               </Text>
             }
             withAsterisk
@@ -65,6 +76,7 @@ export function UsersPage() {
             hideControls
             allowNegative={false}
             allowDecimal={false}
+            max={INITIAL_TARGET}
             value={inputValue}
             onChange={handleInputChange}
             styles={{
@@ -81,7 +93,54 @@ export function UsersPage() {
             }}
           />
           <Text size="xs" c="dimmed" mt={5}>
-            Target plan: <Text component="span" fw={700} c="var(--mantine-color-text)">{formatNumber(totalUsers)}</Text>
+            Target plan: <Text component="span" fw={700} c="var(--mantine-color-blue-6)">{formatNumber(totalUsers)}</Text>
+          </Text>
+        </Box>
+
+        {/* Second Card */}
+        <Box>
+          <Text size="sm" fw={500} mb={5}>Users</Text>
+          <Text size="xs" c="dimmed" mt={5}>
+            Source plan: <Tooltip label="Number of users you can add from the source subscription">
+              <Text component="span" fw={700} c="var(--mantine-color-blue-6)" style={{ cursor: 'help' }}>{formatNumber(targetPlan)}</Text>
+            </Tooltip>
+          </Text>
+          <Box w={150} mt="md" mb="xl">
+            <Slider
+              value={totalUsers}
+              onChange={(value) => {
+                const newInputValue = value - CURRENT_USERS;
+                handleInputChange(newInputValue);
+              }}
+              min={CURRENT_USERS}
+              max={CURRENT_USERS + INITIAL_TARGET}
+              step={1}
+              marks={[
+                { value: CURRENT_USERS, label: formatNumber(CURRENT_USERS) },
+                { value: CURRENT_USERS + INITIAL_TARGET, label: formatNumber(CURRENT_USERS + INITIAL_TARGET) }
+              ]}
+              styles={{
+                track: {
+                  height: 8,
+                },
+                thumb: {
+                  height: 20,
+                  width: 20,
+                },
+                mark: {
+                  width: 2,
+                  height: 8,
+                },
+                markLabel: {
+                  fontSize: '0.8rem',
+                }
+              }}
+            />
+          </Box>
+          <Text size="xs" c="dimmed" mt={5}>
+            Target plan: <Tooltip label="Current users in this target subscription">
+              <Text component="span" fw={700} c="var(--mantine-color-blue-6)" style={{ cursor: 'help' }}>{formatNumber(totalUsers)}</Text>
+            </Tooltip>
           </Text>
         </Box>
       </Stack>

@@ -116,3 +116,80 @@ The project is configured to automatically deploy to GitHub Pages when changes a
 
 Once deployed, the site will be available at:
 https://[your-github-username].github.io/partialupgrade/
+
+# Mantine React App
+
+A modern React application built with Vite, TypeScript, and Mantine UI components.
+
+## Features
+
+- ⚡️ [Vite](https://vitejs.dev/) - Lightning fast build tool
+- ⚛️ [React](https://reactjs.org/) - UI library
+- 📦 [TypeScript](https://www.typescriptlang.org/) - Type safety
+- 🎨 [Mantine](https://mantine.dev/) - UI components
+- 📱 Responsive design
+- 🚀 GitHub Pages deployment
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 20 or later
+- npm 9 or later
+
+### Installation
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+## Project Structure
+
+```
+.
+├── src/
+│   ├── components/     # Reusable components
+│   ├── pages/         # Page components
+│   ├── App.tsx        # Main app component
+│   └── main.tsx       # Entry point
+├── public/            # Static assets
+└── index.html         # HTML template
+```
+
+## Development
+
+The development server will start at `http://localhost:5173` by default.
+
+## Deployment
+
+The app is automatically deployed to GitHub Pages when changes are pushed to the `main` branch.
+
+## License
+
+MIT
+
+## Adding Mantine Components
+
+Simply import Mantine components in your React components:
+
+```tsx
+import { Button, Text, Stack } from '@mantine/core';
+
+export function MyComponent() {
+  return (
+    <Stack>
+      <Text>Hello World</Text>
+      <Button>Click Me</Button>
+    </Stack>
+  );
+}

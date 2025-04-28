@@ -1,7 +1,0 @@
-query ListLicenses {
-  licenses {
-    id
-    key
-    name
-  }
-}
