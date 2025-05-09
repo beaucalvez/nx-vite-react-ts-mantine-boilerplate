@@ -7,6 +7,8 @@ import '@mantine/core/styles.css';
 export default function App() {
   const [activePage, setActivePage] = useState('number-input');
 
+
+  
   return (
     <AppShell
       header={{ height: 60 }}
