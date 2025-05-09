@@ -1,11 +1,11 @@
 import { AppShell, Button, Container, Group, Title } from '@mantine/core';
 import { useState } from 'react';
-import SliderPage from './components/SliderPage';
-import NumberInputPage from './components/NumberInputPage';
-import './App.css';
+import SliderPage from '../apps/main/src/components/SliderPage';
+import NumberInputPage from '../apps/main/src/components/NumberInputPage';
+import '@mantine/core/styles.css';
 
 export default function App() {
-  const [activePage, setActivePage] = useState('slider');
+  const [activePage, setActivePage] = useState('number-input');
 
   return (
     <AppShell
@@ -17,18 +17,19 @@ export default function App() {
           <Group h="100%" px="md" justify="space-between">
             <Title order={3}>Full Partial Upgrade UI Prototypes</Title>
             <Group>
+            <Button 
+                variant={activePage === 'number-input' ? 'filled' : 'light'} 
+                onClick={() => setActivePage('number-input')}
+              >
+                Number Input
+              </Button>
               <Button 
                 variant={activePage === 'slider' ? 'filled' : 'light'} 
                 onClick={() => setActivePage('slider')}
               >
                 Slider
               </Button>
-              <Button 
-                variant={activePage === 'number-input' ? 'filled' : 'light'} 
-                onClick={() => setActivePage('number-input')}
-              >
-                Number Input
-              </Button>
+
             </Group>
           </Group>
         </Container>

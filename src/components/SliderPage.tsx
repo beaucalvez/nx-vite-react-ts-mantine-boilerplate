@@ -1,8 +1,8 @@
 import { Box, Slider, Text, Tooltip } from '@mantine/core';
 import { useState } from 'react';
 
-const CURRENT_USERS = 32;
-const INITIAL_TARGET = 50;
+const CURRENT_USERS = 100;
+const INITIAL_TARGET = 750;
 
 const formatNumber = (num: number) => {
   return new Intl.NumberFormat('en-US').format(num);
